@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import { LegalLayout } from "@/components/legal/layout";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Security — ClearMeta",
+export const metadata: Metadata = pageMetadata({
+  title: "Security",
   description:
     "How ClearMeta protects uploaded images: auto-deletion, rate limits, and secure processing.",
-};
+  path: "/security",
+});
 
 export default function SecurityPage() {
   return (

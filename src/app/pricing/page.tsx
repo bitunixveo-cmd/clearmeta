@@ -1,11 +1,14 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { ProVerifyPricingTable } from "@/components/app/pro-verify-pricing-table";
 import { PROVENANCE_PRICING } from "@/lib/provenance/pricing";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Pro Verify Pricing",
-  description: "Subscribe to ClearMeta Pro Verify for SynthID and C2PA detection.",
-};
+  description: `Subscribe to ClearMeta Pro Verify for SynthID and C2PA detection. $${PROVENANCE_PRICING.monthly}/mo includes ${PROVENANCE_PRICING.checksIncluded} checks, then $${PROVENANCE_PRICING.perCheck} per additional check. Cancel anytime.`,
+  path: "/pricing",
+});
 
 export default function PricingPage() {
   return (
@@ -20,6 +23,18 @@ export default function PricingPage() {
             {PROVENANCE_PRICING.checksIncluded} checks included, then $
             {PROVENANCE_PRICING.perCheck} per additional check.
           </p>
+        </div>
+
+        <div className="mb-8 rounded-xl border border-neutral-200 bg-white p-6 text-sm text-neutral-600">
+          <h2 className="text-base font-semibold text-neutral-950">
+            What is included
+          </h2>
+          <ul className="mt-3 list-disc space-y-2 pl-5">
+            <li>SynthID invisible watermark detection via OpenAI verification</li>
+            <li>C2PA Content Credentials and provenance scanning</li>
+            <li>Shareable verification reports with before/after metadata</li>
+            <li>Optional metadata strip after verification on supported files</li>
+          </ul>
         </div>
 
         <div className="rounded-xl border border-neutral-200 bg-white p-4 sm:p-6">

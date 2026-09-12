@@ -1,0 +1,235 @@
+{
+  "summary": {
+    "health_score": 58,
+    "business_type": "B2C SaaS Web Application — AI image metadata removal tool",
+    "audit_url": "https://clearmeta.srv1673464.hstgr.cloud",
+    "audit_date": "2026-09-13",
+    "pages_crawled": 12,
+    "top_findings": [
+      "/verify returns 404 to crawlers but is listed in sitemap.xml and linked sitewide",
+      "No canonical tags on any indexable page",
+      "Zero JSON-LD structured data across all tested pages",
+      "SEO landing pages are critically thin (120–150 words vs ~800 target)",
+      "Staging Hostinger subdomain indexed instead of production clearmeta.app"
+    ],
+    "quick_wins": [
+      "Remove /verify from sitemap until it returns 200 for anonymous users",
+      "Add per-page canonical tags via Next.js metadata.alternates.canonical",
+      "Add FAQPage + Organization + SoftwareApplication JSON-LD",
+      "Give /app unique title and meta description",
+      "Defer Clerk JS on marketing pages to improve LCP"
+    ]
+  },
+  "categories": [
+    {
+      "name": "Technical SEO",
+      "score": 68,
+      "weight": 0.22,
+      "what_works": [
+        "Valid HTTPS with Let's Encrypt",
+        "Strong robots.txt with AI bot rules",
+        "Live sitemap.xml with 11 URLs",
+        "Next.js prerendered HTML",
+        "Security headers present"
+      ],
+      "findings": [
+        {
+          "title": "/verify in sitemap returns 404",
+          "severity": "Critical",
+          "description": "Clerk auth.protect() blocks unauthenticated crawlers; sitemap and nav link to broken URL.",
+          "recommendation": "Remove from sitemap or publish a public marketing page at /verify before auth gate."
+        },
+        {
+          "title": "Missing canonical tags",
+          "severity": "Critical",
+          "description": "No rel=canonical on any tested page despite metadataBase in layout.",
+          "recommendation": "Add alternates.canonical per page in Next.js metadata exports."
+        },
+        {
+          "title": "Missing HSTS header",
+          "severity": "High",
+          "description": "Strict-Transport-Security not set on responses.",
+          "recommendation": "Add HSTS via Traefik or Next.js headers."
+        }
+      ]
+    },
+    {
+      "name": "Content Quality",
+      "score": 52,
+      "weight": 0.23,
+      "what_works": [
+        "Technically accurate C2PA/SynthID messaging",
+        "Honest limitations on SynthID removal",
+        "Privacy, Terms, Security pages present"
+      ],
+      "findings": [
+        {
+          "title": "Thin SEO landing pages",
+          "severity": "Critical",
+          "description": "/remove-* pages are 120–148 words with shared template structure.",
+          "recommendation": "Expand each page to 600–900 words with intent-specific H2 sections."
+        },
+        {
+          "title": "Duplicate title/meta on / and /app",
+          "severity": "High",
+          "description": "Both pages share identical title and description.",
+          "recommendation": "Add unique metadata export to src/app/app/page.tsx."
+        },
+        {
+          "title": "No About page or operator identity",
+          "severity": "High",
+          "description": "Footer shows copyright only; weak E-E-A-T trust signals.",
+          "recommendation": "Add /about with company/operator details."
+        }
+      ]
+    },
+    {
+      "name": "On-Page SEO",
+      "score": 58,
+      "weight": 0.20,
+      "what_works": [
+        "Single H1 on all public pages",
+        "Meta descriptions on most indexable pages",
+        "Strong footer internal linking"
+      ],
+      "findings": [
+        {
+          "title": "Title template double brand suffix",
+          "severity": "Medium",
+          "description": "Pages show 'ClearMeta | ClearMeta' due to layout template plus page titles.",
+          "recommendation": "Use absolute titles or remove — ClearMeta from page-level titles."
+        },
+        {
+          "title": "Auth pages indexable without noindex",
+          "severity": "Medium",
+          "description": "/sign-in and /sign-up return 200 with homepage meta.",
+          "recommendation": "Add robots: { index: false } to auth page metadata."
+        }
+      ]
+    },
+    {
+      "name": "Schema / Structured Data",
+      "score": 22,
+      "weight": 0.10,
+      "what_works": [
+        "Open Graph and Twitter Card basics present"
+      ],
+      "findings": [
+        {
+          "title": "Zero JSON-LD",
+          "severity": "Critical",
+          "description": "No Organization, WebSite, SoftwareApplication, or FAQPage schema detected.",
+          "recommendation": "Add @graph in layout.tsx and FAQPage on /faq."
+        }
+      ]
+    },
+    {
+      "name": "Performance (CWV)",
+      "score": 71,
+      "weight": 0.10,
+      "what_works": [
+        "CLS 0.065 (good)",
+        "Server TTFB ~100ms without redirects",
+        "Mobile layout renders correctly"
+      ],
+      "findings": [
+        {
+          "title": "LCP 6.1s (Poor)",
+          "severity": "Critical",
+          "description": "Clerk auth handshake redirect chain and ~398KB Clerk JS on marketing pages.",
+          "recommendation": "Load Clerk only on auth/checkout routes; fix production Clerk cookie config."
+        }
+      ]
+    },
+    {
+      "name": "AI Search Readiness",
+      "score": 58,
+      "weight": 0.10,
+      "what_works": [
+        "Excellent robots.txt for GPTBot, ClaudeBot, PerplexityBot",
+        "Well-structured llms.txt",
+        "SSR content in HTML"
+      ],
+      "findings": [
+        {
+          "title": "Domain mismatch in llms.txt",
+          "severity": "Critical",
+          "description": "llms.txt references clearmeta.app while site runs on hstgr.cloud staging.",
+          "recommendation": "Align llms.txt URLs with live production domain before launch."
+        },
+        {
+          "title": "FAQ answers too short for AI citation",
+          "severity": "High",
+          "description": "Answers are 16–33 words; optimal passage length is 134–167 words.",
+          "recommendation": "Expand FAQ answers with self-contained definitional blocks."
+        }
+      ]
+    },
+    {
+      "name": "Images",
+      "score": 95,
+      "weight": 0.05,
+      "what_works": [
+        "No missing alt text on img elements",
+        "Decorative SVGs correctly use aria-hidden"
+      ],
+      "findings": [
+        {
+          "title": "Missing og:image",
+          "severity": "Low",
+          "description": "No social preview image configured.",
+          "recommendation": "Add 1200x630 branded og:image with alt text."
+        }
+      ]
+    }
+  ],
+  "action_plan": {
+    "phases": [
+      {
+        "name": "Phase 1: Critical Fixes",
+        "timeframe": "Week 1",
+        "items": [
+          "Remove /verify from sitemap or fix crawler access",
+          "Add canonical tags sitewide",
+          "Add Organization + SoftwareApplication + FAQPage JSON-LD",
+          "Defer Clerk on marketing pages"
+        ]
+      },
+      {
+        "name": "Phase 2: High-Impact Improvements",
+        "timeframe": "Weeks 2–3",
+        "items": [
+          "Unique /app metadata and noindex auth pages",
+          "Expand /remove-* landing pages to 600+ words",
+          "Fix title template duplication",
+          "Add og:image and favicon",
+          "Launch on clearmeta.app production domain"
+        ]
+      },
+      {
+        "name": "Phase 3: Content & Authority",
+        "timeframe": "Month 2",
+        "items": [
+          "Add About page and operator identity",
+          "Expand FAQ for AI citation",
+          "Add homepage body links to SEO landing pages",
+          "Build brand signals (demos, citations, community presence)"
+        ]
+      },
+      {
+        "name": "Phase 4: Monitoring & Iteration",
+        "timeframe": "Ongoing",
+        "items": [
+          "Submit sitemap in Google Search Console on production domain",
+          "Monitor CrUX once traffic exists",
+          "Track indexation of /remove-* intent pages",
+          "Run drift baseline after production launch"
+        ]
+      }
+    ]
+  },
+  "artifacts": {
+    "findings_dir": "findings/",
+    "screenshots_dir": "screenshots/"
+  }
+}

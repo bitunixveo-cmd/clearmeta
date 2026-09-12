@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
 import { LegalLayout } from "@/components/legal/layout";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Terms of Service — ClearMeta",
-  description: "Terms governing use of ClearMeta's free metadata remover and Pro Verify tools.",
-};
+export const metadata: Metadata = pageMetadata({
+  title: "Terms of Service",
+  description:
+    "Terms governing use of ClearMeta's free metadata remover and Pro Verify tools.",
+  path: "/terms",
+});
 
 export default function TermsPage() {
   return (

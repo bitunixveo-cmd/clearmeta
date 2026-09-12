@@ -8,7 +8,6 @@ import {
   Sparkles,
   Zap,
 } from "lucide-react";
-import { ProVerifyPricingTable } from "@/components/app/pro-verify-pricing-table";
 
 export function Hero() {
   return (
@@ -75,7 +74,7 @@ export function Hero() {
               <div className="h-3 w-3 rounded-full bg-amber-400" />
               <div className="h-3 w-3 rounded-full bg-emerald-400" />
               <span className="ml-2 text-xs font-medium text-stone-500">
-                clearmeta.app — metadata scan
+                ClearMeta — metadata scan
               </span>
             </div>
             <div className="grid gap-0 md:grid-cols-2">
@@ -374,19 +373,76 @@ export function Pricing() {
 
         <div
           id="subscribe"
-          className="mt-16 scroll-mt-24 rounded-2xl border border-stone-200 bg-stone-50/50 p-4 sm:p-8"
+          className="mt-16 scroll-mt-24 rounded-2xl border border-stone-200 bg-stone-50/50 p-8 text-center"
         >
-          <div className="mb-6 text-center">
-            <h3 className="text-xl font-semibold text-stone-950">
-              Subscribe to Pro Verify
-            </h3>
-            <p className="mt-2 text-sm text-stone-600">
-              Secure checkout powered by Clerk. Cancel anytime.
-            </p>
-          </div>
-          <div className="rounded-xl border border-stone-200 bg-white p-4 sm:p-6">
-            <ProVerifyPricingTable />
-          </div>
+          <h3 className="text-xl font-semibold text-stone-950">
+            Subscribe to Pro Verify
+          </h3>
+          <p className="mx-auto mt-2 max-w-lg text-sm text-stone-600">
+            SynthID and C2PA detection from $9/mo. Secure checkout powered by
+            Clerk. Cancel anytime.
+          </p>
+          <Link
+            href="/pricing"
+            className="mt-6 inline-flex items-center gap-2 rounded-full bg-stone-950 px-8 py-3.5 text-sm font-semibold text-white hover:bg-stone-800"
+          >
+            View pricing & subscribe
+            <ArrowRight className="h-4 w-4" />
+          </Link>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export function SeoResources() {
+  const guides = [
+    {
+      href: "/remove-chatgpt-metadata",
+      title: "Remove ChatGPT metadata",
+      description: "Strip C2PA and XMP from ChatGPT and DALL·E exports.",
+    },
+    {
+      href: "/remove-c2pa-metadata",
+      title: "Remove C2PA credentials",
+      description: "Delete JUMBF Content Credentials from AI images.",
+    },
+    {
+      href: "/remove-synthid-metadata",
+      title: "SynthID detection guide",
+      description: "Understand pixel watermarks vs metadata tags.",
+    },
+    {
+      href: "/faq",
+      title: "FAQ",
+      description: "Formats, retention, legality, and Pro Verify.",
+    },
+  ];
+
+  return (
+    <section className="border-t border-stone-200 bg-stone-50 py-20">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+        <div className="mx-auto max-w-2xl text-center">
+          <h2 className="text-3xl font-bold tracking-tight text-stone-950">
+            Guides & resources
+          </h2>
+          <p className="mt-4 text-lg text-stone-600">
+            Learn how AI metadata, C2PA, and SynthID affect your images.
+          </p>
+        </div>
+        <div className="mt-12 grid gap-6 sm:grid-cols-2">
+          {guides.map((guide) => (
+            <Link
+              key={guide.href}
+              href={guide.href}
+              className="rounded-2xl border border-stone-200 bg-white p-6 transition hover:border-stone-300 hover:shadow-sm"
+            >
+              <h3 className="text-lg font-semibold text-stone-950">
+                {guide.title}
+              </h3>
+              <p className="mt-2 text-sm text-stone-600">{guide.description}</p>
+            </Link>
+          ))}
         </div>
       </div>
     </section>

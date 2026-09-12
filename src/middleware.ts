@@ -1,15 +1,19 @@
 import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
+import { NextResponse } from "next/server";
 
-const isProtectedRoute = createRouteMatcher([
-  "/verify(.*)",
-  "/app/deep-clean(.*)",
-]);
+const isProtectedRoute = createRouteMatcher(["/app/deep-clean(.*)"]);
 
-export default clerkMiddleware(async (auth, req) => {
-  if (isProtectedRoute(req)) {
-    await auth.protect();
-  }
-});
+const clerkEnabled = Boolean(process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY);
+
+const middlewareHandler = clerkEnabled
+  ? clerkMiddleware(async (auth, req) => {
+      if (isProtectedRoute(req)) {
+        await auth.protect();
+      }
+    })
+  : () => NextResponse.next();
+
+export default middlewareHandler;
 
 export const config = {
   matcher: [

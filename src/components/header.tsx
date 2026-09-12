@@ -7,6 +7,8 @@ import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 import { LogoMark } from "@/components/logo";
 import { AuthButtons } from "@/components/auth-buttons";
+import { StaticAuthLinks } from "@/components/static-auth-links";
+import { pathNeedsClerk } from "@/lib/clerk-routes";
 
 const navLinks = [
   { href: "/#features", label: "Features" },
@@ -111,6 +113,9 @@ export function Header() {
     pathname === "/pricing";
   const isToolsActive =
     pathname.startsWith("/verify") || pathname.startsWith("/app/deep-clean");
+  const showClerkAuth =
+    Boolean(process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY) &&
+    pathNeedsClerk(pathname);
 
   return (
     <header className="sticky top-0 z-50 border-b border-stone-200 bg-white/90 backdrop-blur-md">
@@ -145,7 +150,7 @@ export function Header() {
         </nav>
 
         <div className="hidden items-center gap-3 md:flex">
-          <AuthButtons />
+          {showClerkAuth ? <AuthButtons /> : <StaticAuthLinks />}
           <Link
             href="/app"
             className="rounded-md bg-neutral-950 px-4 py-2 text-sm font-medium text-white transition hover:bg-neutral-800"
@@ -206,7 +211,7 @@ export function Header() {
               Remove metadata
             </Link>
             <div className="mt-3 flex justify-center gap-2">
-              <AuthButtons />
+              {showClerkAuth ? <AuthButtons /> : <StaticAuthLinks />}
             </div>
           </nav>
         </div>

@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import { LegalLayout } from "@/components/legal/layout";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Privacy Policy — ClearMeta",
+export const metadata: Metadata = pageMetadata({
+  title: "Privacy Policy",
   description:
     "How ClearMeta handles your images, metadata, and personal data. Files are auto-deleted after 1 hour.",
-};
+  path: "/privacy",
+});
 
 export default function PrivacyPage() {
   return (

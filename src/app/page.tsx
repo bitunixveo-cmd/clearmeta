@@ -4,6 +4,7 @@ import {
   Hero,
   HowItWorks,
   Pricing,
+  SeoResources,
   SupportedTools,
 } from "@/components/landing/sections";
 
@@ -14,6 +15,7 @@ export default function HomePage() {
       <SupportedTools />
       <Features />
       <HowItWorks />
+      <SeoResources />
       <Pricing />
       <CTA />
     </>

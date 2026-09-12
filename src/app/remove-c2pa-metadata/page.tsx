@@ -1,13 +1,16 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
+import { ExpandedLandingContent } from "@/components/seo/expanded-landing-content";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Remove C2PA Content Credentials — ClearMeta",
+export const metadata: Metadata = pageMetadata({
+  title: "Remove C2PA Content Credentials",
   description:
-    "Remove C2PA and JUMBF Content Credentials from AI-generated images. Free online C2PA stripper.",
+    "Remove C2PA and JUMBF Content Credentials from AI-generated images. Free online C2PA stripper with batch processing and shareable reports.",
+  path: "/remove-c2pa-metadata",
   keywords: ["C2PA remover", "content credentials remover", "JUMBF stripper"],
-};
+});
 
 export default function RemoveC2paMetadataPage() {
   return (
@@ -44,6 +47,8 @@ export default function RemoveC2paMetadataPage() {
           Strip C2PA now
           <ArrowRight className="h-5 w-5" />
         </Link>
+
+        <ExpandedLandingContent topic="c2pa" />
       </div>
     </div>
   );
