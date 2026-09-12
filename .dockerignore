@@ -1,0 +1,9 @@
+node_modules
+.next
+uploads
+.git
+.env*
+!.env.example
+*.md
+.agents
+.cursor
