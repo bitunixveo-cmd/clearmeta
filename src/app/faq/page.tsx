@@ -37,8 +37,12 @@ export default function FaqPage() {
 
         <p className="mt-8">
           Ready to start?{" "}
+          <Link href="/remove-ai-metadata" className="font-medium text-stone-950 underline">
+            Remove AI metadata
+          </Link>{" "}
+          or{" "}
           <Link href="/app" className="font-medium text-stone-950 underline">
-            Open the free metadata remover
+            open the free tool
           </Link>
           .
         </p>

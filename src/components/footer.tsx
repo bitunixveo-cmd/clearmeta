@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { LogoMark } from "@/components/logo";
+import { SEO_GUIDE_LINKS } from "@/lib/seo-keywords";
 
 export function Footer() {
   return (
@@ -51,21 +52,13 @@ export function Footer() {
             <div>
               <h4 className="text-sm font-semibold text-stone-900">Resources</h4>
               <ul className="mt-4 space-y-2 text-sm text-stone-500">
-                <li>
-                  <Link href="/remove-chatgpt-metadata" className="hover:text-stone-950">
-                    ChatGPT metadata
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/remove-c2pa-metadata" className="hover:text-stone-950">
-                    C2PA remover
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/remove-synthid-metadata" className="hover:text-stone-950">
-                    SynthID guide
-                  </Link>
-                </li>
+                {SEO_GUIDE_LINKS.map((guide) => (
+                  <li key={guide.href}>
+                    <Link href={guide.href} className="hover:text-stone-950">
+                      {guide.title}
+                    </Link>
+                  </li>
+                ))}
               </ul>
             </div>
             <div>

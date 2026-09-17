@@ -1,8 +1,16 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import { SEO_GUIDE_LINKS } from "@/lib/seo-keywords";
+
+export type ExpandedLandingTopic =
+  | "chatgpt"
+  | "c2pa"
+  | "synthid"
+  | "ai"
+  | "midjourney";
 
 type ExpandedLandingProps = {
-  topic: "chatgpt" | "c2pa" | "synthid";
+  topic: ExpandedLandingTopic;
 };
 
 export function ExpandedLandingContent({ topic }: ExpandedLandingProps) {
@@ -24,21 +32,13 @@ export function ExpandedLandingContent({ topic }: ExpandedLandingProps) {
       <section>
         <h2 className="text-2xl font-semibold text-stone-950">Related guides</h2>
         <ul className="mt-4 space-y-2 text-stone-600">
-          <li>
-            <Link href="/remove-chatgpt-metadata" className="hover:text-stone-950">
-              Remove ChatGPT & DALL·E metadata
-            </Link>
-          </li>
-          <li>
-            <Link href="/remove-c2pa-metadata" className="hover:text-stone-950">
-              Remove C2PA Content Credentials
-            </Link>
-          </li>
-          <li>
-            <Link href="/remove-synthid-metadata" className="hover:text-stone-950">
-              SynthID detection & Deep Clean
-            </Link>
-          </li>
+          {SEO_GUIDE_LINKS.map((guide) => (
+            <li key={guide.href}>
+              <Link href={guide.href} className="hover:text-stone-950">
+                {guide.title}
+              </Link>
+            </li>
+          ))}
           <li>
             <Link href="/faq" className="hover:text-stone-950">
               Frequently asked questions
@@ -119,6 +119,49 @@ const CONTENT = {
       title: "When to use each tool",
       paragraphs: [
         "Use the free metadata remover when you need C2PA and EXIF gone. Use Pro Verify when you need to know whether SynthID or C2PA is present. Use Deep Clean only for experimental workflows where slight quality loss is acceptable.",
+      ],
+    },
+  ],
+  ai: [
+    {
+      title: "What is AI metadata?",
+      paragraphs: [
+        "AI metadata includes C2PA Content Credentials, XMP trainedAlgorithmicMedia tags, EXIF software fields, and generator-specific blocks that identify how an image was created. ChatGPT, DALL·E, Midjourney, Adobe Firefly, and Stable Diffusion commonly embed these tags on export.",
+        "Removing AI metadata is different from removing visible watermarks. ClearMeta targets file-level tags that platforms like Instagram and Facebook may read as AI Info or contains AI-generated media signals.",
+      ],
+    },
+    {
+      title: "How to remove AI metadata before upload",
+      paragraphs: [
+        "Export the original file from your AI tool — not a screenshot. Upload to ClearMeta at /app for automatic scan and strip. Review the before/after metadata panel, download the cleaned file, and upload that version to social platforms or clients.",
+        "Batch mode supports multiple images with ZIP download. Files auto-delete from our servers after one hour.",
+      ],
+    },
+    {
+      title: "Remove AI label on Instagram and other platforms",
+      paragraphs: [
+        "Many AI Info labels are triggered by C2PA and XMP metadata in the file itself. Stripping those tags before upload can prevent metadata-driven labels. Pixel watermarks like SynthID are separate — use Pro Verify to detect them.",
+      ],
+    },
+  ],
+  midjourney: [
+    {
+      title: "What metadata does Midjourney embed?",
+      paragraphs: [
+        "Midjourney exports may include XMP generation parameters, prompt fragments, model identifiers, and in some workflows C2PA or PNG text chunks with workflow data. The exact fields depend on your export path and upscaler settings.",
+        "ClearMeta scans for supported containers and strips AI-related metadata while preserving image quality.",
+      ],
+    },
+    {
+      title: "How to remove Midjourney metadata",
+      paragraphs: [
+        "Upload your Midjourney PNG or JPEG to the free tool. ClearMeta detects XMP, EXIF, C2PA, and PNG text chunks, then removes selected AI metadata. Compare before and after for every file.",
+      ],
+    },
+    {
+      title: "Midjourney vs SynthID",
+      paragraphs: [
+        "Standard Midjourney cleaning removes file metadata, not invisible pixel watermarks. If you need SynthID detection after cleaning, run Pro Verify at /verify.",
       ],
     },
   ],

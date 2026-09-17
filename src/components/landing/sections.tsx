@@ -8,6 +8,7 @@ import {
   Sparkles,
   Zap,
 } from "lucide-react";
+import { SEO_GUIDE_LINKS } from "@/lib/seo-keywords";
 
 export function Hero() {
   return (
@@ -396,29 +397,6 @@ export function Pricing() {
 }
 
 export function SeoResources() {
-  const guides = [
-    {
-      href: "/remove-chatgpt-metadata",
-      title: "Remove ChatGPT metadata",
-      description: "Strip C2PA and XMP from ChatGPT and DALL·E exports.",
-    },
-    {
-      href: "/remove-c2pa-metadata",
-      title: "Remove C2PA credentials",
-      description: "Delete JUMBF Content Credentials from AI images.",
-    },
-    {
-      href: "/remove-synthid-metadata",
-      title: "SynthID detection guide",
-      description: "Understand pixel watermarks vs metadata tags.",
-    },
-    {
-      href: "/faq",
-      title: "FAQ",
-      description: "Formats, retention, legality, and Pro Verify.",
-    },
-  ];
-
   return (
     <section className="border-t border-stone-200 bg-stone-50 py-20">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
@@ -427,11 +405,11 @@ export function SeoResources() {
             Guides & resources
           </h2>
           <p className="mt-4 text-lg text-stone-600">
-            Learn how AI metadata, C2PA, and SynthID affect your images.
+            Learn how to remove AI metadata, C2PA, and SynthID from your images.
           </p>
         </div>
-        <div className="mt-12 grid gap-6 sm:grid-cols-2">
-          {guides.map((guide) => (
+        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {SEO_GUIDE_LINKS.map((guide) => (
             <Link
               key={guide.href}
               href={guide.href}

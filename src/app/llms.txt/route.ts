@@ -17,9 +17,12 @@ export function GET() {
 ## Key pages
 
 - Home: ${siteUrl}/
+- Remove AI metadata: ${siteUrl}/remove-ai-metadata
+- AI metadata remover (free tool): ${siteUrl}/app
 - Remove ChatGPT metadata: ${siteUrl}/remove-chatgpt-metadata
-- Remove C2PA: ${siteUrl}/remove-c2pa-metadata
-- SynthID info: ${siteUrl}/remove-synthid-metadata
+- Remove C2PA / content credentials: ${siteUrl}/remove-c2pa-metadata
+- Remove Midjourney metadata: ${siteUrl}/remove-midjourney-metadata
+- SynthID remover guide: ${siteUrl}/remove-synthid-metadata
 - FAQ: ${siteUrl}/faq
 - Privacy: ${siteUrl}/privacy
 - Terms: ${siteUrl}/terms

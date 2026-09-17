@@ -13,12 +13,19 @@ export default function robots(): MetadataRoute.Robots {
       },
       {
         userAgent: "GPTBot",
-        allow: ["/", "/llms.txt", "/remove-chatgpt-metadata", "/remove-c2pa-metadata", "/faq"],
+        allow: ["/", "/llms.txt", "/remove-ai-metadata", "/remove-chatgpt-metadata", "/remove-c2pa-metadata", "/remove-midjourney-metadata", "/remove-synthid-metadata", "/faq"],
         disallow: ["/api/", "/app/deep-clean"],
       },
       {
         userAgent: "ChatGPT-User",
-        allow: ["/", "/llms.txt", "/faq"],
+        allow: [
+          "/",
+          "/llms.txt",
+          "/faq",
+          "/remove-ai-metadata",
+          "/remove-chatgpt-metadata",
+          "/remove-c2pa-metadata",
+        ],
         disallow: ["/api/"],
       },
       {
@@ -28,12 +35,25 @@ export default function robots(): MetadataRoute.Robots {
       },
       {
         userAgent: "ClaudeBot",
-        allow: ["/", "/llms.txt", "/faq", "/remove-c2pa-metadata"],
+        allow: [
+          "/",
+          "/llms.txt",
+          "/faq",
+          "/remove-ai-metadata",
+          "/remove-c2pa-metadata",
+          "/remove-chatgpt-metadata",
+        ],
         disallow: ["/api/"],
       },
       {
         userAgent: "PerplexityBot",
-        allow: ["/", "/llms.txt", "/faq"],
+        allow: [
+          "/",
+          "/llms.txt",
+          "/faq",
+          "/remove-ai-metadata",
+          "/remove-synthid-metadata",
+        ],
         disallow: ["/api/"],
       },
       {

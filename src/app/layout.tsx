@@ -7,6 +7,7 @@ import { ClerkGate } from "@/components/clerk-gate";
 import { JsonLd } from "@/components/json-ld";
 import { getSiteUrl } from "@/lib/env";
 import { organizationSchema } from "@/lib/schema";
+import { SITE_KEYWORDS } from "@/lib/seo-keywords";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -22,15 +23,8 @@ export const metadata: Metadata = {
     template: "%s | ClearMeta",
   },
   description:
-    "Strip C2PA Content Credentials, EXIF, and XMP AI tags from ChatGPT, DALL·E, Midjourney, and other AI-generated images. Fast, private, server-side processing with auto-delete.",
-  keywords: [
-    "AI metadata remover",
-    "C2PA remover",
-    "remove ChatGPT metadata",
-    "Content Credentials",
-    "EXIF cleaner",
-    "SynthID detector",
-  ],
+    "Remove AI metadata from images. Strip C2PA Content Credentials, EXIF, and XMP AI tags from ChatGPT, DALL·E, Midjourney, and other AI-generated images. Free AI metadata remover with auto-delete.",
+  keywords: [...SITE_KEYWORDS],
   alternates: {
     canonical: siteUrl,
   },
